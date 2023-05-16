@@ -6,6 +6,7 @@ import ioj.judge.payload.SubmissionResultPayload;
 import ioj.judge.service.CompileFileService;
 import ioj.judge.service.ExecutionService;
 import ioj.judge.service.MatcherService;
+import ioj.judge.service.RemovalService;
 import ioj.judge.service.SaveToFileService;
 
 public class SubmissionController {
@@ -13,11 +14,13 @@ public class SubmissionController {
     private CompileFileService compileFileService;
     private ExecutionService executionService;
     private MatcherService matcherService;
+    private RemovalService removalService;
     public SubmissionController(){
         saveToFileService = new SaveToFileService();
         compileFileService = new CompileFileService();
         executionService = new ExecutionService();
         matcherService = new MatcherService();
+        removalService = new RemovalService();
     }
     public SubmissionResultPayload submission(SubmissionPayload submissionPayload) throws Exception{
         try {
@@ -50,6 +53,7 @@ public class SubmissionController {
                     "Wrong Answer"
                 );
             }
+            removalService.removeTempFiles(submissionPayload);
             return new SubmissionResultPayload(
                 "AC",
                 "Accepted"

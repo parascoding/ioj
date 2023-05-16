@@ -3,7 +3,6 @@ package ioj.judge;
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.InputStreamReader;
-import java.nio.Buffer;
 
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
@@ -39,8 +38,14 @@ public class IiitdmOnlineJudgeApplication implements CommandLineRunner{
 	}
 	private void doSub() throws Exception{
 		try {
+			// String basePath = "/mnt/32b6b06a-25ad-4911-90a2-9c68b656b0e3/Personal/Spring/judge/temp/";
+			// submissionPayload = new SubmissionPayload("123", "123", "paras", "tthis is a code", "java", "", new File(basePath+"Main.java"), "");
+			// submissionController = new SubmissionController();
+			// SubmissionResultPayload submissionResultPayload = submissionController.submission(submissionPayload);
+			// System.out.println(submissionResultPayload);
+			// System.out.println("\n\n!!!!!!! SUCESS !!!!!!!!!!!!!\n\n");
 			String basePath = "/mnt/32b6b06a-25ad-4911-90a2-9c68b656b0e3/Personal/Spring/judge/temp/";
-			submissionPayload = new SubmissionPayload("123", "123", "paras", "tthis is a code", "java", "", new File(basePath+"Main.java"), "");
+			submissionPayload = new SubmissionPayload("123", "123", "paras", "tthis is a code", "cpp", "", new File(basePath+"Main.cpp"), "");
 			submissionController = new SubmissionController();
 			SubmissionResultPayload submissionResultPayload = submissionController.submission(submissionPayload);
 			System.out.println(submissionResultPayload);

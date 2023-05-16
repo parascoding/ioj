@@ -5,7 +5,7 @@ import java.io.InputStream;
 import ioj.judge.payload.SubmissionPayload;
 import ioj.judge.service.helper.ExecutionServiceHelper;
 
-public class JavaExecutionServiceHelper implements ExecutionServiceHelper{
+public class JavaExecutionServiceHelperImpl implements ExecutionServiceHelper{
     private String basePath = "/mnt/32b6b06a-25ad-4911-90a2-9c68b656b0e3/Personal/Spring/judge/data/";
     @Override
     public boolean executeFile(SubmissionPayload submissionPayload) throws Exception {

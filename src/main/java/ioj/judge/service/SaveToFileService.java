@@ -3,7 +3,6 @@ package ioj.judge.service;
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
-import java.io.FileWriter;
 import java.io.PrintWriter;
 
 import ioj.judge.payload.SubmissionPayload;
@@ -39,6 +38,7 @@ public class SaveToFileService {
             while((s = br.readLine()) != null)
                 ot.println(s);
             ot.close();
+            br.close();
             return true;
         } catch (Exception e) {
             throw new Exception(e.getMessage());
