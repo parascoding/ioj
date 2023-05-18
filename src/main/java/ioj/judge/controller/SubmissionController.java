@@ -1,66 +1,34 @@
 package ioj.judge.controller;
 
 import java.io.File;
+
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.RestController;
+
+import ioj.judge.payload.ApiResponse;
 import ioj.judge.payload.SubmissionPayload;
 import ioj.judge.payload.SubmissionResultPayload;
-import ioj.judge.service.CompileFileService;
-import ioj.judge.service.ExecutionService;
-import ioj.judge.service.MatcherService;
-import ioj.judge.service.RemovalService;
-import ioj.judge.service.SaveToFileService;
+import ioj.judge.service.SubmissionService;
 
+
+@RestController
+@RequestMapping("compete/{contestId}/{problemId}/")
 public class SubmissionController {
-    private SaveToFileService saveToFileService;
-    private CompileFileService compileFileService;
-    private ExecutionService executionService;
-    private MatcherService matcherService;
-    private RemovalService removalService;
+    private SubmissionService submissionService;
     public SubmissionController(){
-        saveToFileService = new SaveToFileService();
-        compileFileService = new CompileFileService();
-        executionService = new ExecutionService();
-        matcherService = new MatcherService();
-        removalService = new RemovalService();
+        submissionService = new SubmissionService();
     }
-    public SubmissionResultPayload submission(SubmissionPayload submissionPayload) throws Exception{
+    @PostMapping("submit")
+    public ApiResponse submit(@ModelAttribute SubmissionPayload submissionPayload) throws Exception{
         try {
-            if(!saveToFileService.saveToFile(submissionPayload)){
-                return new SubmissionResultPayload(
-                    "SE",
-                    "Saving Error"
-                );
-            }
-            
-            if(!compileFileService.compileFile(submissionPayload)){
-                return new SubmissionResultPayload(
-                    "CE",
-                    "Compilation Error"
-                );
-            }
-
-            if(!executionService.executeFile(submissionPayload)){
-                return new SubmissionResultPayload(
-                    "RE",
-                    "Runtime Error"
-                );
-            }
-            if(!matcherService.matchOutput(
-                new File(submissionPayload.getBasePath() + "problem/output.txt"),
-                new File(submissionPayload.getBasePath() + submissionPayload.getUserId() + "/output.txt")
-            )){
-                return new SubmissionResultPayload(
-                    "WA",
-                    "Wrong Answer"
-                );
-            }
-            removalService.removeTempFiles(submissionPayload);
-            return new SubmissionResultPayload(
-                "AC",
-                "Accepted"
-            );
-            
+            return submissionService.submission(submissionPayload);
         } catch (Exception e) {
-            throw new Exception(e.getMessage());
+            return new ApiResponse(false, e.getMessage());
         }
     }
+    
 }

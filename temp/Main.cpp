@@ -3,32 +3,33 @@
 
 using namespace std;
 
-int main(int argc, char* argv[]) {
-    // Check if the user provided a file path.
-    if (argc < 2) {
-        cout << "Please provide a file path." << endl;
-        return 1;
-    }
+int main(int argc, char *argv[]) {
+  if (argc < 2) {
+    cout << "Usage: " << argv[0] << " <input filename>\n";
+    return 1;
+  }
 
-    // Open the file for reading.
-    fstream file(argv[1]);
-    fstream outfile(argv[2]);
+  ifstream in(argv[1]);
+    
+  // Output file stream object to 
+  // write to file2.txt
+  ofstream f(argv[2]);
+      
+  // Reading file.txt completely using 
+  // END OF FILE eof() method
+  while(!in.eof())
+  {
+    // string to extract line from 
+    // file.txt
+    string text;
+        
+    // extracting line from file.txt
+    getline(in, text);
+        
+    // Writing the extracted line in 
+    // file2.txt
+    f << text << endl;
+  }
 
-    // Check if the file opened successfully.
-    if (!file.is_open()) {
-        cout << "Error opening file." << endl;
-        return 1;
-    }
-
-    // Read the contents of the file.
-    string line;
-    while (getline(file, line)) {
-        outfile << line << endl;
-    }
-
-    file.close();
-
-    outfile.close();
-
-    return 0;
+  return 0;
 }

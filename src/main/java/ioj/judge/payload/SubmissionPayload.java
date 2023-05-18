@@ -2,6 +2,8 @@ package ioj.judge.payload;
 
 import java.io.File;
 
+import org.springframework.web.multipart.MultipartFile;
+
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -18,6 +20,7 @@ public class SubmissionPayload {
     private String code;
     private String language;
     private String filePath;
-    private File sourceCode;
+    private MultipartFile sourceCode;
+    // private byte[] sourceCode;
     private String basePath;
 }

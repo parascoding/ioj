@@ -10,6 +10,10 @@ public class CppExecutionServiceHelperImpl implements ExecutionServiceHelper{
     @Override
     public boolean executeFile(SubmissionPayload submissionPayload) throws Exception {
         ProcessBuilder pb = new ProcessBuilder(submissionPayload.getFilePath(), basePath+submissionPayload.getContestId()+"/"+submissionPayload.getProblemId()+"/problem/input.txt", basePath+submissionPayload.getContestId()+"/"+submissionPayload.getProblemId()+"/"+submissionPayload.getUserId()+"/output.txt");
+
+        System.out.println(submissionPayload.getFilePath()+"\n"+basePath+submissionPayload.getContestId()+"/"+submissionPayload.getProblemId()+"/problem/input.txt"+"\n"+basePath+submissionPayload.getContestId()+"/"+submissionPayload.getProblemId()+"/"+submissionPayload.getUserId()+"/output.txt");
+
+        
         Process p = pb.start();
         int compileExitCode = p.waitFor();
 

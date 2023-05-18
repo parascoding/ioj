@@ -13,15 +13,18 @@ public class MatcherService {
             while(true){
                 x = br1.readLine();
                 y = br2.readLine();
-                if(x == null && y == null){
+                if(x == null || y == null){
                     break;
                 }
-                if(x == null || y == null)
-                    return false;
                 
-                if(!x.equals(y))
+                if(!x.equals(y)){
+                    br1.close();
+                    br2.close();
                     return false;
+                }
             }
+            br1.close();
+            br2.close();
             return true;
         } catch (Exception e) {
             System.out.println(e.getMessage());

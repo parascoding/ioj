@@ -3,6 +3,7 @@ package ioj.judge.service;
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
+import java.io.InputStreamReader;
 import java.io.PrintWriter;
 
 import ioj.judge.payload.SubmissionPayload;
@@ -33,8 +34,8 @@ public class SaveToFileService {
                                         submissionPayload.getContestId() + "/" +
                                         submissionPayload.getProblemId() + "/");
             PrintWriter ot = new PrintWriter(file);
-            BufferedReader br = new BufferedReader(new FileReader(submissionPayload.getSourceCode()));
-            String s;
+            BufferedReader br = new BufferedReader(new InputStreamReader(submissionPayload.getSourceCode().getInputStream()));
+            String s;// = new String(submissionPayload.getSourceCode());
             while((s = br.readLine()) != null)
                 ot.println(s);
             ot.close();

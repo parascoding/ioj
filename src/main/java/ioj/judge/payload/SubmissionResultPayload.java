@@ -11,7 +11,7 @@ import lombok.ToString;
 @AllArgsConstructor
 @NoArgsConstructor
 @ToString
-public class SubmissionResultPayload {
+public class SubmissionResultPayload extends ApiResponse {
     private String result;
     private String details;
 }
