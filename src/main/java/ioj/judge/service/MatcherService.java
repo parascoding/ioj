@@ -9,14 +9,14 @@ public class MatcherService {
         try {
             BufferedReader br1 = new BufferedReader(new FileReader(f1));
             BufferedReader br2 = new BufferedReader(new FileReader(f2));
-            String x = "b", y = "a";
+            String x, y;
             while(true){
                 x = br1.readLine();
                 y = br2.readLine();
                 if(x == null || y == null){
                     break;
                 }
-                
+                System.out.println(x + " " + y);
                 if(!x.equals(y)){
                     br1.close();
                     br2.close();

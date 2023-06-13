@@ -11,6 +11,7 @@ public class AddProblemService {
                 file.mkdirs();
             file = new File(path, name);
             fileToSaved.transferTo(file);
+            System.out.println("SAVED: "+name); 
             return true;
         } catch (Exception e) {
             System.out.println(e.getMessage());
@@ -19,7 +20,7 @@ public class AddProblemService {
     }
     public boolean saveProblemStatement(MultipartFile problemStatement, String path) throws Exception{
         try {
-            return saveFile(problemStatement, path, "statement.tex");
+            return saveFile(problemStatement, path, "statement.md");
         } catch (Exception e) {
             System.out.println(e.getMessage());
             return false;

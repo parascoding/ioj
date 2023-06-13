@@ -6,10 +6,16 @@ import org.springframework.web.multipart.MultipartFile;
 
 import ioj.judge.payload.ApiResponse;
 import lombok.AllArgsConstructor;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
+import lombok.Getter;
+import org.springframework.core.io.Resource;
 
 @AllArgsConstructor
+@NoArgsConstructor
 @Setter
-public class SeeProblemPayload extends ApiResponse{
+@Getter
+public class SeeProblemPayload{
     private File problemStatement;
+    private String markdown;
 }

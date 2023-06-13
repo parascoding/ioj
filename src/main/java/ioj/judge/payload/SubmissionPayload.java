@@ -17,7 +17,7 @@ public class SubmissionPayload {
     private String contestId;
     private String problemId;
     private String userId;
-    private String code;
+    // private String code;
     private String language;
     private String filePath;
     private MultipartFile sourceCode;
