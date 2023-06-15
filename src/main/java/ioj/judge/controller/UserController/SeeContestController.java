@@ -3,9 +3,7 @@ package ioj.judge.controller.UserController;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.autoconfigure.data.web.SpringDataWebProperties.Pageable;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.PageRequest;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -19,13 +17,14 @@ import ioj.judge.payload.UserPayloads.AllContestPayload;
 import ioj.judge.payload.UserPayloads.SeeContestPayload;
 
 @RestController
-@RequestMapping("/compete")
+@RequestMapping("compete/")
+@CrossOrigin("*")
 public class SeeContestController {
     @Autowired
     private ContestRepository contestRepository;
 
     @GetMapping("/")
-    private ApiResponse seeAllContest() throws Exception{
+    private ApiResponse seeAllContest() throws   Exception{
         try {
             
             List<Contest> list = contestRepository.findAll();
@@ -42,6 +41,7 @@ public class SeeContestController {
     @GetMapping("/{contestId}/")
     private ApiResponse seeContest(@PathVariable String contestId) throws Exception{
         try {
+            System.out.println("WAS HERE");
             Contest contest = contestRepository.findById(contestId).get();
             if(contest == null)
                 throw new Exception("No contest exists");

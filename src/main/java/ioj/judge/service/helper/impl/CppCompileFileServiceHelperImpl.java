@@ -19,7 +19,7 @@ public class CppCompileFileServiceHelperImpl implements CompileFileServiceHelper
             int s = p.waitFor();
             if (s != 0) {
                 System.out.println("Compile Error");
-                return true;
+                return false;
             } else {
                 System.out.println("Compilation successful");
                 return true;    

@@ -12,7 +12,7 @@ public class JavaCompileFileServiceHelperImpl implements CompileFileServiceHelpe
             int s = p.waitFor();
             if (s != 0) {
                 System.out.println("Compile Error");
-                return true;
+                return false;
             } else {
                 System.out.println("Compilation successful");
                 return true;    

@@ -8,6 +8,7 @@ import java.io.InputStreamReader;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.multipart.MultipartFile;
 
 import ioj.judge.controller.SubmissionController;
@@ -17,6 +18,7 @@ import ioj.judge.payload.SubmissionPayload;
 import ioj.judge.payload.SubmissionResultPayload;
 
 @SpringBootApplication
+@CrossOrigin("*")
 public class IiitdmOnlineJudgeApplication implements CommandLineRunner{
 
 	private SubmissionPayload submissionPayload;

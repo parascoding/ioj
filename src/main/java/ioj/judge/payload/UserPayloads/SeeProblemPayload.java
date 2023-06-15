@@ -16,6 +16,7 @@ import org.springframework.core.io.Resource;
 @Setter
 @Getter
 public class SeeProblemPayload{
+    // private File problemStatement;
     private File problemStatement;
     private String markdown;
 }

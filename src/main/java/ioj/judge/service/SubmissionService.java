@@ -1,9 +1,6 @@
 package ioj.judge.service;
 
 import java.io.File;
-
-import org.springframework.web.bind.annotation.ModelAttribute;
-
 import ioj.judge.payload.ApiResponse;
 import ioj.judge.payload.SubmissionPayload;
 import ioj.judge.payload.SubmissionResultPayload;
