@@ -8,19 +8,31 @@ public class Main {
         File inputFile = new File("input.txt");
 
         // Create a BufferedReader to read from the file.
-        BufferedReader bufferedReader = new BufferedReader(new FileReader(args[0]));
+        BufferedReader br = new BufferedReader(new FileReader(args[0]));
 
         // Create a PrintWriter to write to the output file.
-        PrintWriter printWriter = new PrintWriter(new FileWriter(args[1]));
+        PrintWriter ot = new PrintWriter(new FileWriter(args[1]));
 
         // Read each line from the file and write it to the output file.
-        String line;
-        while ((line = bufferedReader.readLine()) != null) {
-            printWriter.println(line);
-        }
+        int t = Integer.parseInt(br.readLine().trim());
+		while(t-->0){
+			int n = Integer.parseInt(br.readLine().trim());
+			for(int i = 2; i <= n; i++){
+				if(isPrime(i))
+					ot.print(i + " ");
+			}
+			ot.println();
+		}
 
         // Close the BufferedReader and PrintWriter.
-        bufferedReader.close();
-        printWriter.close();
+        br.close();
+        ot.close();
     }
+    static boolean isPrime(int n){
+    	for(int i = 2; i * i <= n; i++)
+    		if(n % i == 0)
+    			return false;
+    	return true;
+	}
+    
 }

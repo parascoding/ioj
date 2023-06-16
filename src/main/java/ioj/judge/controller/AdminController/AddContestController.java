@@ -3,6 +3,7 @@ package ioj.judge.controller.AdminController;
 import java.text.SimpleDateFormat;
 
 import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -37,6 +38,16 @@ public class AddContestController {
         } catch (Exception e) {
             System.out.println(e.getMessage());
             return new ApiResponse(false, e.getMessage());
+        }
+    }
+
+    @PostMapping("/deleteContest/{contestId}")
+    public ApiResponse deleteContest(@PathVariable String contestId) throws Exception{
+        try {
+            contestRepository.deleteById(contestId);
+            return new ApiResponse(true, "Contest is deleted");
+        } catch (Exception e) {
+            return new ApiResponse(false, "Something went wrong !");
         }
     }
 }

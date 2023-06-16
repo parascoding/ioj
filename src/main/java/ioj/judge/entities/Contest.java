@@ -22,4 +22,12 @@ public class Contest {
         listOfProblems.add(problemId);
         return true;
     }
+    public boolean deleteProblem(String problemId){
+    	List<String> tempList = new ArrayList<>();
+    	for(String x : this.listOfProblems)
+	    	if(!x.equals(problemId))
+	    		tempList.add(x);
+	    this.listOfProblems = new ArrayList<>(tempList);
+	    return true;
+    }
 }

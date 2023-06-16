@@ -30,7 +30,33 @@ public class AddProblemController {
 
     @Autowired
     private ProblemRepository problemRepository;
-
+    @PostMapping("/{contestId}/{problemId}/createProblem")
+    public ApiResponse addProblem(@PathVariable String contestId, @PathVariable String problemId) throws Exception{
+    	try{
+    		Problem problem = new Problem();
+    		problem.setId(problemId);
+    		problem.setContestId(contestId);
+    		problemRepository.save(problem);
+    		Contest contest = contestRepository.findById(contestId).get();
+    		contest.addProblem(problemId);
+    		contestRepository.save(contest);
+    		return new ApiResponse(true, "Problem Added Succesfully");
+    	} catch(Exception e){
+    		return new ApiResponse(false, e.getMessage());
+    	}
+    }
+    @PostMapping("/{contestId}/{problemId}/deleteProblem")
+    public ApiResponse deleteProblem(@PathVariable String contestId, @PathVariable String problemId) throws Exception{
+    	try{
+    		Contest contest = contestRepository.findById(contestId).get();
+    		contest.deleteProblem(problemId);
+    		contestRepository.save(contest);
+    		problemRepository.deleteById(problemId);
+    		return new ApiResponse(true, "Problem Deleted Succesfully");
+    	} catch(Exception e){
+    		return new ApiResponse(false, e.getMessage());
+    	}
+    }
     @PostMapping("/{contestId}/{problemId}/addProblemFiles")
     public ApiResponse addProblemFiles(@ModelAttribute AddProblemFilesPayload addProblemFilesPayload,
                                 @PathVariable String contestId,

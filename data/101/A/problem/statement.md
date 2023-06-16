@@ -16,3 +16,16 @@ For each test case print all prime numbers of the range [0, n] seprated by a sin
 * 0 < T < 100
 * 0 < n < 1000
 
+
+## Example
+### Input
+3  
+5  
+7  
+8  
+### Output
+2 3 5  
+2 3 5 7  
+2 3 5 7  
+### Explanation
+All the prime numbers in the range are printed.
