@@ -32,7 +32,7 @@ public class SeeProblemController {
         fetchFileService = new FetchProblemStatement();
     }
     @GetMapping("view")
-    private SeeProblemPayload viewProblem(@PathVariable String contestId,
+    private ApiResponse viewProblem(@PathVariable String contestId,
                                     @PathVariable String problemId) throws Exception{
         try {
             Problem problem = problemRepository.findById(problemId).get();
@@ -57,7 +57,7 @@ public class SeeProblemController {
             // seeProblemPayload.setMessage("Added File");
             return seeProblemPayload;
         } catch (Exception e) {
-            return new SeeProblemPayload(null, null);
+            return new ApiResponse(false, e.getMessage());
         }
     }
 }

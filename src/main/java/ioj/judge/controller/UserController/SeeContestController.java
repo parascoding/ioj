@@ -25,7 +25,7 @@ public class SeeContestController {
     private ContestRepository contestRepository;
 
     @GetMapping("/")
-    private ApiResponse seeAllContest() throws   Exception{
+    private ApiResponse seeAllContest() throws Exception{
         try {
             
             List<Contest> list = contestRepository.findAll(Sort.by(Sort.Direction.DESC, "endTime"));

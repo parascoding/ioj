@@ -1,37 +1,27 @@
-package ioj.judge.payload;
+package ioj.judge.payload.auth;
 
 import jakarta.validation.constraints.NotEmpty;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
+import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.Setter;
+import lombok.ToString;
 
 @Data
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
-public class AuthenticationRequest {
+@Getter
+@Setter
+@ToString
+public class JwtRequest {
 
 	@NotEmpty(message = "Id can't be empty")
     private String id;
 
 	@NotEmpty(message = "Password can't be empty")
     private String password;
-
-	public String getId() {
-		return this.id;
-	}
-
-	public void setId(String id) {
-		this.id = id;
-	}
-
-	public String getPassword() {
-		return this.password;
-	}
-
-	public void setPassword(String password) {
-		this.password = password;
-	}
 
 }

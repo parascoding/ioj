@@ -1,24 +1,32 @@
-// package ioj.judge.controller.TempController;
+package ioj.judge.controller.TempController;
 
-// import java.util.List;
+import java.security.Principal;
+import java.util.List;
 
-// import org.springframework.beans.factory.annotation.Autowired;
-// import org.springframework.web.bind.annotation.GetMapping;
-// import org.springframework.web.bind.annotation.RequestMapping;
-// import org.springframework.web.bind.annotation.RestController;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 
-// import ioj.judge.entities.User;
-// import ioj.judge.service.UserService;
+import ioj.judge.entities.User;
 
-// @RestController
-// @RequestMapping("/home")
-// public class TempController {
-//     @Autowired
-//     private UserService userService;
+@RestController
+public class TempController {
 
-//     @GetMapping("/users")
-//     public List<User> getUsers(){
-//         System.out.println("Getting users");
-//         return this.userService.getUsers();
-//     }
-// }
+    @GetMapping("/admin/hello")
+    public String adminHello(){
+        return "Admin Hello";
+    }
+    @GetMapping("/user/hello")
+    public String userHello(){
+        return "User Hello";
+    }
+    @GetMapping("/auth/publicHello")
+    public String publicHello(){
+        return "Public Hello";
+    }
+    @GetMapping("/currentUser")
+    public String getLoggedInUser(Principal principal){
+        return principal.getName();
+    }
+}

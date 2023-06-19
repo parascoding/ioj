@@ -1,5 +1,7 @@
-package ioj.judge.payload;
+package ioj.judge.payload.auth;
 
+
+import ioj.judge.payload.ApiResponse;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -9,8 +11,8 @@ import lombok.NoArgsConstructor;
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
-public class AuthenticationResponse{
-    private String token;
+public class JwtResponse extends ApiResponse{
+    private String jwtToken;
     private String id;
     private String name;
     private String role;

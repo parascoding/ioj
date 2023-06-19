@@ -30,6 +30,7 @@ public class AddProblemController {
 
     @Autowired
     private ProblemRepository problemRepository;
+
     @PostMapping("/{contestId}/{problemId}/createProblem")
     public ApiResponse addProblem(@PathVariable String contestId, @PathVariable String problemId) throws Exception{
     	try{
@@ -84,61 +85,4 @@ public class AddProblemController {
             return new ApiResponse(false, e.getMessage());
         }
     }
-    
-    @PostMapping("/{contestId}/{problemId}/addProblemFiless")
-    public ApiResponse addProblemFiles(MultipartFile problemStatement, MultipartFile inputFile, MultipartFile outputFile,
-                                @PathVariable String contestId,
-                                @PathVariable String problemId) throws Exception{
-        try {
-            System.out.println(contestId+" "+problemId);
-            String path = basePath + contestId + "/" + problemId + "/" + "problem/";
-            addProblemService = new AddProblemService();
-            if( 
-                addProblemService.saveProblemStatement(problemStatement, path) &&
-                addProblemService.saveInputFile(inputFile, path) &&
-                addProblemService.saveOutputFile(outputFile, path)
-            ) return new ApiResponse(true, "Files Saved Successfully");
-            
-            throw new Exception("File Can't be Saved");
-        } catch (Exception e) {
-            System.out.println(e.getMessage());
-            return new ApiResponse(false, e.getMessage());
-        }
-    }
-    
-    @PostMapping("/{contestId}/{problemId}/testFile")
-    public ApiResponse testFile(MultipartFile file,
-                                @PathVariable String contestId,
-                                @PathVariable String problemId) throws Exception{
-        try {
-            if(file == null)
-            	System.out.println("File is NULL");
-            else
-            	System.out.println("WORKNG");
-            return new ApiResponse(true, "Files Saved Successfully");
-        } catch (Exception e) {
-            System.out.println(e.getMessage());
-            return new ApiResponse(false, e.getMessage());
-        }
-    }
-
-    @PostMapping("/{contestId}/createProblem")
-    public ApiResponse createProblem(@PathVariable String contestId, String problemId) throws Exception{
-        try {
-            Problem problem = new Problem();
-            Contest contest = contestRepository.findById(contestId).get();
-            if(contest == null)
-                throw new Exception("Contest Not Found");
-            problem.setId(problemId);
-            problem.setContestId(contestId);
-            problemRepository.save(problem);
-            contest.addProblem(problemId);
-            contestRepository.save(contest);
-            return new ApiResponse(true, "Problem Created Successfully");
-        } catch (Exception e) {
-            System.out.println(e.getMessage());
-            return new ApiResponse(false, e.getMessage());
-        }
-    }
-    
 }

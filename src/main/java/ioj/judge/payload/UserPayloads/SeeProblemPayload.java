@@ -15,7 +15,7 @@ import org.springframework.core.io.Resource;
 @NoArgsConstructor
 @Setter
 @Getter
-public class SeeProblemPayload{
+public class SeeProblemPayload  extends ApiResponse{
     // private File problemStatement;
     private File problemStatement;
     private String markdown;

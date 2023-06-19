@@ -1,4 +1,4 @@
-package ioj.judge.payload;
+package ioj.judge.payload.auth;
 
 import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.Size;
