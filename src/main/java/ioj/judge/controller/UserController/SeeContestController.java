@@ -3,6 +3,7 @@ package ioj.judge.controller.UserController;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Sort;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -27,7 +28,7 @@ public class SeeContestController {
     private ApiResponse seeAllContest() throws   Exception{
         try {
             
-            List<Contest> list = contestRepository.findAll();
+            List<Contest> list = contestRepository.findAll(Sort.by(Sort.Direction.DESC, "endTime"));
             AllContestPayload allContestPayload = new AllContestPayload(list);
             allContestPayload.setIsSuccess(true);
             allContestPayload.setMessage("List of Contests");

@@ -37,7 +37,7 @@ public class SubmissionService {
             if(!executionService.executeFile(submissionPayload)){
                 return new SubmissionResultPayload(
                     "RE",
-                    "Runtime Error"
+                    "Runtime Error/Time Limit Exceeded"
                 );
             }
             if(!matcherService.matchOutput(

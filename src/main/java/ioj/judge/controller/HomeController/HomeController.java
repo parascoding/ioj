@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.RestController;
 @CrossOrigin(origins = "*")
 @RestController
 public class HomeController {
-    @GetMapping("home")
+    @GetMapping("h")
     public String home(){
         return "HELLOW";
     }

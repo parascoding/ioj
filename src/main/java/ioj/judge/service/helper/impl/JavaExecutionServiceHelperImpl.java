@@ -4,6 +4,7 @@ import java.io.InputStream;
 
 import ioj.judge.payload.SubmissionPayload;
 import ioj.judge.service.helper.ExecutionServiceHelper;
+import java.util.concurrent.TimeUnit;
 
 public class JavaExecutionServiceHelperImpl implements ExecutionServiceHelper{
     private String basePath = "/mnt/32b6b06a-25ad-4911-90a2-9c68b656b0e3/Personal/Spring/judge/data/";
@@ -12,10 +13,12 @@ public class JavaExecutionServiceHelperImpl implements ExecutionServiceHelper{
         try {
             ProcessBuilder pb = new ProcessBuilder("java", submissionPayload.getFilePath()+".java", basePath+submissionPayload.getContestId()+"/"+submissionPayload.getProblemId()+"/problem/input.txt", basePath+submissionPayload.getContestId()+"/"+submissionPayload.getProblemId()+"/"+submissionPayload.getUserId()+"/output.txt");
             Process p = pb.start();
-            int compileExitCode = p.waitFor();
-
+            boolean compileExitCode = p.waitFor(1, TimeUnit.SECONDS);
+			if(p.isAlive()){
+				throw new Exception("Time Limit Exceeded");
+			}
             // If the exit code is not 0, the compilation failed.
-            if (compileExitCode != 0) {
+            if (!compileExitCode) {
                 // Get the error stream of the compiler process.
                 InputStream errorStream = p.getErrorStream();
 
