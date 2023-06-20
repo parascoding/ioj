@@ -11,7 +11,9 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 
+import ioj.judge.dao.LeaderBoardRepository;
 import ioj.judge.dao.SubmissionRepository;
+import ioj.judge.entities.Leaderboard;
 import ioj.judge.entities.Submission;
 import ioj.judge.payload.ApiResponse;
 import ioj.judge.payload.SubmissionPayload;
@@ -31,14 +33,23 @@ public class SubmissionController {
     @Autowired
     private SubmissionRepository submissionRepository;
 
+    @Autowired
+    private LeaderBoardRepository leaderBoardRepository;
+
     @PostMapping("submit")
-    public ApiResponse submit(@ModelAttribute SubmissionPayload submissionPayload) throws Exception{
+    public ApiResponse submit(@ModelAttribute SubmissionPayload submissionPayload, @PathVariable String problemId) throws Exception{
         Submission submission = new Submission();
         try {
             submission.setTimeStamp(submissionPayload.getTimeStamp());
             submission.setUserId(submissionPayload.getUserId());
             ApiResponse apiResponse = submissionService.submission(submissionPayload);
             submission.setResult("ACCEPTED");
+            if(!leaderBoardRepository.existsById(submissionPayload.getContestId()))
+                leaderBoardRepository.save(new Leaderboard(submissionPayload.getContestId()));
+            Leaderboard leaderboard = leaderBoardRepository.findById(submissionPayload.getContestId()).get();
+
+            leaderboard.userSolved(submission.getUserId(), problemId);
+            leaderBoardRepository.save(leaderboard);    
             submissionRepository.save(submission);
             return apiResponse;
         } catch (Exception e) {

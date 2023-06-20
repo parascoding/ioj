@@ -5,13 +5,18 @@ import java.util.Date;
 import java.util.List;
 
 import org.springframework.data.mongodb.core.mapping.Document;
+import org.springframework.format.annotation.DateTimeFormat;
+
+import jakarta.validation.constraints.NotNull;
 import lombok.Getter;
 import lombok.Setter;
+import org.springframework.data.annotation.Id;
 
 @Document("Contest")
 @Getter
 @Setter
 public class Contest {
+    @Id
     private String id;
     private Date startTime;
     private Date endTime;

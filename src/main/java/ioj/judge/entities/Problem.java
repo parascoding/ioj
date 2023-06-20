@@ -12,4 +12,5 @@ public class Problem {
 	@Id
     private String id;
     private String contestId;
+    private int score;
 }

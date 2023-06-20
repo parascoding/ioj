@@ -81,15 +81,15 @@ public class AuthController {
             System.out.println(request);
             this.doAuthenticate(request.getId(), request.getPassword());
     
-    
+            String role = userRepository.findById(request.getId()).get().getRole().toString();
             UserDetails userDetails = userDetailsService.loadUserByUsername(request.getId());
-            String token = this.helper.generateToken(userDetails);
+            System.out.println(userDetails.getAuthorities());
+            String token = this.helper.generateToken(userDetails, role);
     
             JwtResponse response = JwtResponse.builder()
                     .jwtToken(token)
                     .id(userDetails.getUsername())
-                    .role(userRepository.findById(userDetails
-                    .getUsername()).get().getRole().toString())
+                    .role(role)
                     .build();
             response.setIsSuccess(true);
             response.setMessage("Login Successfull");
