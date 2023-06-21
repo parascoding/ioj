@@ -17,4 +17,6 @@ public class AddProblemFilesPayload {
     private MultipartFile inputFile;
     @NotNull(message = "File Can't be empty")
     private MultipartFile outputFile;
+    private String difficulty = "Easy";
+    private MultipartFile editorialFile;
 }

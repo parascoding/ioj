@@ -1,0 +1,30 @@
+[{
+  "_id": "parascoding",
+  "name": "Paras Yadav",
+  "password": "$2a$10$PytQhOg9Ui4q7NhxZ3arS.0EN.NaOWaSsrDH/hRdsyfQNQy5ieXjS",
+  "role": "ADMIN",
+  "_class": "ioj.judge.entities.User"
+},{
+  "_id": "user2",
+  "name": "Paras Yadav",
+  "password": "$2a$10$Dp1fbO6SO9VA/gCYpPF2xOjov3QJ3ChjSIFFus.roio8Co4EFnycC",
+  "_class": "ioj.judge.entities.User"
+},{
+  "_id": "user1",
+  "name": "Paras Yadav",
+  "password": "$2a$10$h6usb6rWHlUxuOUx6kUiSukk/a.l2DlSz1W.U7AOIL2TekSWbGHve",
+  "role": "USER",
+  "_class": "ioj.judge.entities.User"
+},{
+  "_id": "parasthecool123",
+  "name": "Paras Yadav",
+  "password": "$2a$10$NEE8fVhXDCeup1rHH31ix.hm7P9ZnO.EPBdT3wng8CEj.RREjnIG6",
+  "role": "USER",
+  "_class": "ioj.judge.entities.User"
+},{
+  "_id": "yadav9778",
+  "name": "Avdhesh",
+  "password": "$2a$10$DqPkkpW2D0FjjIb7Uz2hyuckiRLPm/cQlIkf9uu2OiP8ALitFgFPK",
+  "role": "USER",
+  "_class": "ioj.judge.entities.User"
+}]

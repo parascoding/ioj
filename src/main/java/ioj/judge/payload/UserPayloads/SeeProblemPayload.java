@@ -19,4 +19,6 @@ public class SeeProblemPayload  extends ApiResponse{
     // private File problemStatement;
     private File problemStatement;
     private String markdown;
+    private int solvedCount;
+    private String difficulty = "Easy";
 }

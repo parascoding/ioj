@@ -25,5 +25,5 @@ public class SubmissionPayload {
     private MultipartFile sourceCode;
     // private byte[] sourceCode;
     private String basePath;
-    private String timeStamp;
+    private long timeStamp;
 }

@@ -1,3 +1,46 @@
+# Samle Codes
+
+## C++
+```cpp=
+#include <iostream>
+#include <fstream>
+
+using namespace std;
+
+int main(int argc, char *argv[]) {
+  if (argc < 2) {
+    cout << "Usage: " << argv[0] << " <input filename>\n";
+    return 1;
+  }
+
+  ifstream in(argv[1]);
+    
+  // Output file stream object to 
+  // write to file2.txt
+  ofstream f(argv[2]);
+      
+  // Reading file.txt completely using 
+  // END OF FILE eof() method
+  while(!in.eof())
+  {
+    // string to extract line from 
+    // file.txt
+    string text;
+        
+    // extracting line from file.txt
+    getline(in, text);
+        
+    // Writing the extracted line in 
+    // file2.txt
+    f << text << endl;
+  }
+
+  return 0;
+}
+```
+
+## Java
+```java=
 import java.io.BufferedReader;
 import java.io.*;
 
@@ -12,14 +55,7 @@ public class Main {
 
         // Create a PrintWriter to write to the output file.
         PrintWriter ot = new PrintWriter(new FileWriter(args[1]));
-	int num = (int)(1e1);
-	int mod = (int)(1e9 + 7);
-	long pow = 1;
-	while(num>0){
-		num -= (int)(Math.random() * 5 + 1);
-		pow <<= 1; 
-		pow %= mod;
-	}
+
         // Read each line from the file and write it to the output file.
         int t = Integer.parseInt(br.readLine().trim());
 		while(t-->0){
@@ -43,3 +79,4 @@ public class Main {
 	}
     
 }
+```

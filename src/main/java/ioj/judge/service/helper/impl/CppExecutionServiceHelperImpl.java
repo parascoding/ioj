@@ -28,6 +28,7 @@ public class CppExecutionServiceHelperImpl implements ExecutionServiceHelper{
             while ((bytesRead = errorStream.read(buf)) != -1) {
                 System.err.print(new String(buf, 0, bytesRead));
             }
+            return false;
         } else {
             System.out.println("Run successful");
         }

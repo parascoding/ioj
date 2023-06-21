@@ -1,0 +1,42 @@
+[{
+  "_id": "ABC1",
+  "startTime": 0,
+  "endTime": 0,
+  "_class": "ioj.judge.entities.Contest"
+},{
+  "_id": "ABC2",
+  "startTime": 0,
+  "endTime": 0,
+  "_class": "ioj.judge.entities.Contest"
+},{
+  "_id": "ABC3",
+  "startTime": {
+    "$numberLong": "1687199400000"
+  },
+  "endTime": {
+    "$numberLong": "1687199460000"
+  },
+  "_class": "ioj.judge.entities.Contest"
+},{
+  "_id": "ABC4",
+  "startTime": {
+    "$numberLong": "1687203000000"
+  },
+  "endTime": {
+    "$numberLong": "1687203060000"
+  },
+  "_class": "ioj.judge.entities.Contest"
+},{
+  "_id": "ABC5",
+  "startTime": {
+    "$numberLong": "1687253400000"
+  },
+  "endTime": {
+    "$numberLong": "1687257000000"
+  },
+  "listOfProblems": [
+    "A",
+    "B"
+  ],
+  "_class": "ioj.judge.entities.Contest"
+}]

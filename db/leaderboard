@@ -1,0 +1,32 @@
+[{
+  "_id": "101",
+  "userIdToProblemSolvedMap": {
+    "parascoding": [
+      "A"
+    ],
+    "user1": [
+      "A"
+    ]
+  },
+  "userIdToScoreMap": {
+    "parascoding": 100,
+    "user1": 100
+  },
+  "_class": "ioj.judge.entities.Leaderboard"
+},{
+  "_id": "ABC5",
+  "userIdToProblemSolvedMap": {
+    "parascoding": [
+      "B",
+      "A"
+    ],
+    "user1": [
+      "A"
+    ]
+  },
+  "userIdToScoreMap": {
+    "parascoding": 200,
+    "user1": 100
+  },
+  "_class": "ioj.judge.entities.Leaderboard"
+}]

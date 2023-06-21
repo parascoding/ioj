@@ -8,6 +8,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.multipart.MultipartFile;
+
+import com.fasterxml.jackson.databind.introspect.AccessorNamingStrategy.Provider;
+
 import ioj.judge.dao.ContestRepository;
 import ioj.judge.dao.ProblemRepository;
 import ioj.judge.entities.Contest;
@@ -50,7 +53,10 @@ public class AddProblemController {
     public ApiResponse deleteProblem(@PathVariable String contestId, @PathVariable String problemId) throws Exception{
     	try{
     		Contest contest = contestRepository.findById(contestId).get();
+            System.out.println(problemId);
+            System.out.println("BEFORE REMOVING: "+contest);
     		contest.deleteProblem(problemId);
+            System.out.println("AFTER REMOVING: "+contest);
     		contestRepository.save(contest);
     		problemRepository.deleteById(problemId);
     		return new ApiResponse(true, "Problem Deleted Succesfully");
@@ -68,18 +74,22 @@ public class AddProblemController {
             Problem problem = new Problem();
             problem.setContestId(contestId);
             problem.setId(problemId);
+            problem.setDifficulty(addProblemFilesPayload.getDifficulty());
             Contest contest = contestRepository.findById(contestId).get();
             contest.addProblem(problemId);
             contestRepository.save(contest);
             problemRepository.save(problem);
             addProblemService = new AddProblemService();
-            if( 
-                addProblemService.saveProblemStatement(addProblemFilesPayload.getProblemStatement(), path) &&
-                addProblemService.saveInputFile(addProblemFilesPayload.getInputFile(), path) &&
-                addProblemService.saveOutputFile(addProblemFilesPayload.getOutputFile(), path)
-            ) return new ApiResponse(true, "Files Saved Successfully");
+            if(addProblemFilesPayload.getProblemStatement() != null)
+                addProblemService.saveProblemStatement(addProblemFilesPayload.getProblemStatement(), path);
+            if(addProblemFilesPayload.getInputFile() != null)
+                addProblemService.saveInputFile(addProblemFilesPayload.getInputFile(), path);
+            if(addProblemFilesPayload.getOutputFile() != null)
+                addProblemService.saveOutputFile(addProblemFilesPayload.getOutputFile(), path);
+            if(addProblemFilesPayload.getEditorialFile() != null)
+                addProblemService.saveEditorialFile(addProblemFilesPayload.getEditorialFile(), path);
             
-            throw new Exception("File Can't be Saved");
+            return new ApiResponse(true, "Files Saved Successfully");
         } catch (Exception e) {
             System.out.println(e.getMessage());
             return new ApiResponse(false, e.getMessage());

@@ -15,7 +15,7 @@ import lombok.Setter;
 @NoArgsConstructor
 public class Submission {
     @Id
-    private String timeStamp;
+    private long timeStamp;
     private String userId;
     private String result;
 }

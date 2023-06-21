@@ -26,24 +26,27 @@ public class Leaderboard {
     private String contestId;
 
     private Map<String, Set<String>> userIdToProblemSolvedMap;
-    private TreeMap<String, Integer> userIdToScoreMap;
+    private HashMap<String, Integer> userIdToScoreMap;
     public Leaderboard(String contestId){
         this.contestId = contestId;
         this.userIdToProblemSolvedMap = new HashMap<>();
-        this.userIdToScoreMap = new TreeMap<>(
-            new Comparator<String>() {
-                public int compare(String x, String y){
-                    return userIdToScoreMap.getOrDefault(y, 0) - userIdToScoreMap.getOrDefault(x, 0);
-                }
-            }
+        this.userIdToScoreMap = new HashMap<>(
+            // new Comparator<String>() {
+            //     public int compare(String x, String y){
+            //         return userIdToScoreMap.getOrDefault(y, 0) - userIdToScoreMap.getOrDefault(x, 0);
+            //     }
+            // }
         );
     }
 
     public void userSolved(String userId, String problemId){
+        
         if(!userIdToProblemSolvedMap.containsKey(userId))
             userIdToProblemSolvedMap.put(userId,  new  HashSet<>());
         if(userIdToProblemSolvedMap.get(userId).add(problemId)){
             userIdToScoreMap.put(userId, userIdToScoreMap.getOrDefault(userId, 0) + 100);
         }
+        System.out.println(userIdToProblemSolvedMap);
+        System.out.println(userIdToScoreMap);
     }
 }

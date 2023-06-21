@@ -1,6 +1,8 @@
 package ioj.judge.controller;
 
 import java.io.File;
+import java.security.Principal;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -11,9 +13,12 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 
+import ioj.judge.dao.ContestRepository;
 import ioj.judge.dao.LeaderBoardRepository;
+import ioj.judge.dao.ProblemRepository;
 import ioj.judge.dao.SubmissionRepository;
 import ioj.judge.entities.Leaderboard;
+import ioj.judge.entities.Problem;
 import ioj.judge.entities.Submission;
 import ioj.judge.payload.ApiResponse;
 import ioj.judge.payload.SubmissionPayload;
@@ -29,28 +34,40 @@ public class SubmissionController {
     public SubmissionController(){
         submissionService = new SubmissionService();
     }
-    
+    @Autowired
+    private ContestRepository  contestRepository;
     @Autowired
     private SubmissionRepository submissionRepository;
-
+    @Autowired
+    private ProblemRepository problemRepository;
     @Autowired
     private LeaderBoardRepository leaderBoardRepository;
 
     @PostMapping("submit")
-    public ApiResponse submit(@ModelAttribute SubmissionPayload submissionPayload, @PathVariable String problemId) throws Exception{
+    public ApiResponse submit(@ModelAttribute SubmissionPayload submissionPayload, @PathVariable String problemId,  Principal principal) throws Exception{
+
         Submission submission = new Submission();
+        submission.setTimeStamp(System.currentTimeMillis());
         try {
             submission.setTimeStamp(submissionPayload.getTimeStamp());
             submission.setUserId(submissionPayload.getUserId());
             ApiResponse apiResponse = submissionService.submission(submissionPayload);
             submission.setResult("ACCEPTED");
-            if(!leaderBoardRepository.existsById(submissionPayload.getContestId()))
-                leaderBoardRepository.save(new Leaderboard(submissionPayload.getContestId()));
-            Leaderboard leaderboard = leaderBoardRepository.findById(submissionPayload.getContestId()).get();
-
-            leaderboard.userSolved(submission.getUserId(), problemId);
-            leaderBoardRepository.save(leaderboard);    
+            
+            //  Uncomment this later.
+            // if(System.currentTimeMillis() <= contestRepository.findById(submissionPayload.getContestId()).get().getEndTime()){
+                if(!leaderBoardRepository.existsById(submissionPayload.getContestId()))
+                    leaderBoardRepository.save(new Leaderboard(submissionPayload.getContestId()));
+                Leaderboard leaderboard = leaderBoardRepository.findById(submissionPayload.getContestId()).get();
+    
+                leaderboard.userSolved(submission.getUserId(), problemId);
+                leaderBoardRepository.save(leaderboard);    
+            // }
+            Problem problem = problemRepository.findById(problemId).get();
+            problem.setSolvedCount(problem.getSolvedCount() + 1);
+            problemRepository.save(problem);
             submissionRepository.save(submission);
+            
             return apiResponse;
         } catch (Exception e) {
             submission.setResult(e.getMessage());

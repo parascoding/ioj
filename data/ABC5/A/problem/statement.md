@@ -1,0 +1,31 @@
+# Print Prime Numbers
+
+## Statement
+
+Given a number say `n`, print all the prime numbers in the range [0, n] (inclusive).
+
+## Input Format
+
+The first line consists of a single integer `T` representing the number of problem statements.  
+Following `T` lines contains a single integer `n` representing each test case.
+
+## Output Format
+For each test case print all prime numbers of the range [0, n] seprated by a single whitespace.
+![](https://i.imgur.com/tJSNi4N.png)
+## Constraits
+* 0 < T < 100
+* 0 < n < 1000
+
+
+## Example
+### Input
+3  
+5  
+7  
+8  
+### Output
+2 3 5  
+2 3 5 7  
+2 3 5 7  
+### Explanation
+All the prime numbers in the range are printed.

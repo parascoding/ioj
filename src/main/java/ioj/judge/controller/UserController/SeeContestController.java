@@ -12,7 +12,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import ioj.judge.dao.ContestRepository;
+import ioj.judge.dao.ProblemRepository;
 import ioj.judge.entities.Contest;
+import ioj.judge.entities.Problem;
 import ioj.judge.payload.ApiResponse;
 import ioj.judge.payload.UserPayloads.AllContestPayload;
 import ioj.judge.payload.UserPayloads.SeeContestPayload;
@@ -24,6 +26,8 @@ public class SeeContestController {
     @Autowired
     private ContestRepository contestRepository;
 
+    @Autowired
+    private ProblemRepository problemRepository;
     @GetMapping("/")
     private ApiResponse seeAllContest() throws Exception{
         try {
@@ -46,8 +50,13 @@ public class SeeContestController {
             Contest contest = contestRepository.findById(contestId).get();
             if(contest == null)
                 throw new Exception("No contest exists");
-            ApiResponse seeContestPayload = new SeeContestPayload(contest.getStartTime(),
-                        contest.getEndTime(), contest.getListOfProblems());
+            SeeContestPayload seeContestPayload = new SeeContestPayload();
+            seeContestPayload.setStartTime(contest.getStartTime());
+            seeContestPayload.setEndTime(contest.getEndTime());
+            for(String problemId : contest.getListOfProblems()){
+                Problem problem = problemRepository.findById(problemId).get();
+                seeContestPayload.add(problem.getId(), problem.getDifficulty(), problem.getSolvedCount());
+            }
             seeContestPayload.setIsSuccess(true);
             return seeContestPayload;
         } catch (Exception e) {

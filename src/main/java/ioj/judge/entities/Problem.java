@@ -13,4 +13,6 @@ public class Problem {
     private String id;
     private String contestId;
     private int score;
+    private String Difficulty;
+    private int solvedCount;
 }

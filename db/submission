@@ -1,0 +1,41 @@
+[{
+  "_id": {
+    "$numberLong": "1687255374521"
+  },
+  "userId": "parascoding",
+  "result": "ACCEPTED",
+  "_class": "ioj.judge.entities.Submission"
+},{
+  "_id": {
+    "$numberLong": "1687255487605"
+  },
+  "userId": "parascoding",
+  "result": "ACCEPTED",
+  "_class": "ioj.judge.entities.Submission"
+},{
+  "_id": {
+    "$numberLong": "1687266482588"
+  },
+  "userId": "user1",
+  "result": "ACCEPTED",
+  "_class": "ioj.judge.entities.Submission"
+},{
+  "_id": {
+    "$numberLong": "1687267066899"
+  },
+  "result": "Illegal Submission Attempted",
+  "_class": "ioj.judge.entities.Submission"
+},{
+  "_id": {
+    "$numberLong": "1687267131620"
+  },
+  "userId": "parascoding",
+  "result": "ACCEPTED",
+  "_class": "ioj.judge.entities.Submission"
+},{
+  "_id": {
+    "$numberLong": "1687267195095"
+  },
+  "result": "Illegal Submission Attempted",
+  "_class": "ioj.judge.entities.Submission"
+}]

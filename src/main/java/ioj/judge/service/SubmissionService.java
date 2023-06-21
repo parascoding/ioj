@@ -50,10 +50,9 @@ public class SubmissionService {
                 );
             }
             removalService.removeTempFiles(submissionPayload);
-            return new SubmissionResultPayload(
-                "AC",
-                "Accepted"
-            );
+            SubmissionResultPayload submissionResultPayload = new SubmissionResultPayload("AC", "Accepted");
+            submissionResultPayload.setIsSuccess(true);
+            return submissionResultPayload;
             
         } catch (Exception e) {
             throw new Exception(e.getMessage());

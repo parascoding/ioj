@@ -42,4 +42,12 @@ public class AddProblemService {
             return false;
         }
     }
+    public boolean saveEditorialFile(MultipartFile editorial, String path) throws Exception{
+        try {
+            return saveFile(editorial, path, "editorial.md");
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+            return false;
+        }
+    }
 }

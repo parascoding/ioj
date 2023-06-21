@@ -19,19 +19,21 @@ import ioj.judge.payload.AdminPayload.AddContestPayload;
 @RequestMapping("/admin")
 @CrossOrigin("*")
 public class AddContestController {
-    private SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-    
     @Autowired
     private ContestRepository contestRepository;
     
     @PostMapping("/createContest")
     public ApiResponse createContest(@RequestBody AddContestPayload addContestPayload) throws Exception{
         try {
-            System.out.println("ADDING: " + addContestPayload.getContestId());
-            Contest contest = new Contest();
+            System.out.println(addContestPayload);
+            Contest contest;
+            if(contestRepository.existsById(addContestPayload.getContestId()))
+                contest = contestRepository.findById(addContestPayload.getContestId()).get();
+            else
+                contest = new Contest();
             contest.setId(addContestPayload.getContestId());
-            contest.setStartTime(sdf.parse(addContestPayload.getStartTime()));
-            contest.setEndTime(sdf.parse(addContestPayload.getEndTime()));
+            contest.setStartTime(addContestPayload.getStartTime());
+            contest.setEndTime(addContestPayload.getEndTime());
             contestRepository.save(contest);
             System.out.println("Contest is added");
             return new ApiResponse(true, "Contest Created Successfully");
@@ -47,7 +49,7 @@ public class AddContestController {
             contestRepository.deleteById(contestId);
             return new ApiResponse(true, "Contest is deleted");
         } catch (Exception e) {
-            return new ApiResponse(false, "Something went wrong !");
+            return new ApiResponse(false, e.getMessage());
         }
     }
 }
