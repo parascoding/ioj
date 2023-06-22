@@ -14,4 +14,9 @@ import lombok.ToString;
 public class SubmissionResultPayload extends ApiResponse {
     private String result;
     private String details;
+    private long submissionId;
+    public SubmissionResultPayload(String result, String details){
+        this.result = result;
+        this.details = details;
+    }
 }

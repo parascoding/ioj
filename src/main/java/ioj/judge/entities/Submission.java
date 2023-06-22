@@ -1,7 +1,5 @@
 package ioj.judge.entities;
 
-import java.util.Date;
-
 import org.springframework.data.annotation.Id;
 
 import lombok.AllArgsConstructor;
@@ -15,7 +13,11 @@ import lombok.Setter;
 @NoArgsConstructor
 public class Submission {
     @Id
-    private long timeStamp;
+    private long id;
     private String userId;
     private String result;
+    private String contestId;
+    private String problemId;
+    private String sourceCode;
+    private String language;
 }

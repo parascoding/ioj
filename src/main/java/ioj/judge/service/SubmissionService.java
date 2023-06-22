@@ -18,7 +18,7 @@ public class SubmissionService {
         matcherService = new MatcherService();
         removalService = new RemovalService();
     }
-    public ApiResponse submission(SubmissionPayload submissionPayload) throws Exception{
+    public SubmissionResultPayload submission(SubmissionPayload submissionPayload) throws Exception{
         try {
             if(!saveToFileService.saveToFile(submissionPayload)){
                 return new SubmissionResultPayload(

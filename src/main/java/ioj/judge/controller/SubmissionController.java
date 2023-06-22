@@ -44,16 +44,19 @@ public class SubmissionController {
     private LeaderBoardRepository leaderBoardRepository;
 
     @PostMapping("submit")
-    public ApiResponse submit(@ModelAttribute SubmissionPayload submissionPayload, @PathVariable String problemId,  Principal principal) throws Exception{
+    public ApiResponse submit(@ModelAttribute SubmissionPayload submissionPayload, @PathVariable String problemId, Principal principal) throws Exception{
 
         Submission submission = new Submission();
-        submission.setTimeStamp(System.currentTimeMillis());
+        submission.setId(System.currentTimeMillis());
         try {
-            submission.setTimeStamp(submissionPayload.getTimeStamp());
+            submission.setId(submissionPayload.getTimeStamp());
             submission.setUserId(submissionPayload.getUserId());
-            ApiResponse apiResponse = submissionService.submission(submissionPayload);
-            submission.setResult("ACCEPTED");
-            
+            SubmissionResultPayload apiResponse = submissionService.submission(submissionPayload);
+            submission.setResult(apiResponse.getResult());
+            submission.setContestId(submissionPayload.getContestId());
+            submission.setLanguage(submissionPayload.getLanguage());
+            submission.setSourceCode(new String(submissionPayload.getSourceCode().getBytes()));
+            submission.setProblemId(submissionPayload.getProblemId());
             //  Uncomment this later.
             // if(System.currentTimeMillis() <= contestRepository.findById(submissionPayload.getContestId()).get().getEndTime()){
                 if(!leaderBoardRepository.existsById(submissionPayload.getContestId()))
@@ -67,7 +70,7 @@ public class SubmissionController {
             problem.setSolvedCount(problem.getSolvedCount() + 1);
             problemRepository.save(problem);
             submissionRepository.save(submission);
-            
+            apiResponse.setSubmissionId(submission.getId());
             return apiResponse;
         } catch (Exception e) {
             submission.setResult(e.getMessage());
