@@ -15,6 +15,7 @@ public class SubmissionResultPayload extends ApiResponse {
     private String result;
     private String details;
     private long submissionId;
+    private long timeTaken;
     public SubmissionResultPayload(String result, String details){
         this.result = result;
         this.details = details;

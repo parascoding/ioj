@@ -5,9 +5,9 @@ import org.apache.catalina.valves.ExtendedAccessLogValve;
 import ioj.judge.payload.SubmissionPayload;
 
 public class RemovalService {
-    private String basePath = "/mnt/32b6b06a-25ad-4911-90a2-9c68b656b0e3/Personal/Spring/judge/data/";
+    private String basePath = "../../../../../data/";
     public boolean removeTempFiles(SubmissionPayload submissionPayload) throws Exception{
-        try {
+        try {   
             ProcessBuilder pb = new ProcessBuilder(
                 "rm",
                 "-rf",
@@ -18,6 +18,7 @@ public class RemovalService {
             Process p = pb.start();
             int waitCode = p.waitFor();
             int exitCode = p.exitValue();
+            System.out.println("REMOVAL EXIT CODE: "+exitCode);
             return exitCode == 0;
         } catch (Exception e) {
             System.out.println(e.getMessage());

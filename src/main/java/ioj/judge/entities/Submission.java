@@ -20,4 +20,5 @@ public class Submission {
     private String problemId;
     private String sourceCode;
     private String language;
+    private long timeTaken;
 }

@@ -3,7 +3,7 @@ package ioj.judge.service.helper.impl;
 import ioj.judge.payload.SubmissionPayload;
 import ioj.judge.service.helper.CompileFileServiceHelper;
 
-public class JavaCompileFileServiceHelperImpl implements CompileFileServiceHelper{
+public class  JavaCompileFileServiceHelperImpl implements CompileFileServiceHelper{
     @Override
     public boolean compileFile(SubmissionPayload submissionPayload) throws Exception{
         try {

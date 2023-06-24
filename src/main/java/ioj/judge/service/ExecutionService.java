@@ -6,7 +6,7 @@ import ioj.judge.service.helper.impl.CppExecutionServiceHelperImpl;
 import ioj.judge.service.helper.impl.JavaExecutionServiceHelperImpl;
 
 public class ExecutionService {
-    public boolean executeFile(SubmissionPayload submissionPayload) throws Exception{
+    public long executeFile(SubmissionPayload submissionPayload) throws Exception{
         try {
             ExecutionServiceHelper executionServiceHelper;
             if(submissionPayload.getLanguage().equals("java"))
@@ -17,6 +17,6 @@ public class ExecutionService {
         } catch (Exception e) {
             System.out.println(e.getMessage());
         }
-        return false;
+        return -1;
     }
 }

@@ -10,21 +10,16 @@ import ioj.judge.service.helper.ExecutionServiceHelper;
 import java.util.concurrent.TimeUnit;
 
 public class JavaExecutionServiceHelperImpl implements ExecutionServiceHelper{
-    private String basePath = "/mnt/32b6b06a-25ad-4911-90a2-9c68b656b0e3/Personal/Spring/judge/data/";
     @Override
-    public boolean executeFile(SubmissionPayload submissionPayload) throws Exception {
+    public long executeFile(SubmissionPayload submissionPayload) throws Exception {
         try {
-
-           
-            ProcessBuilder pb = new ProcessBuilder("java", submissionPayload.getFilePath()+".java", basePath+submissionPayload.getContestId()+"/"+submissionPayload.getProblemId()+"/problem/input.txt", basePath+submissionPayload.getContestId()+"/"+submissionPayload.getProblemId()+"/"+submissionPayload.getUserId()+"/output.txt");
-            Process p = pb.start();
-            ProcessHandle processHandle = p.toHandle();
-            ProcessHandle.Info info = processHandle.info();
-            boolean compileExitCode = p.waitFor(1, TimeUnit.SECONDS);
             
-
-            Duration duration = info.totalCpuDuration().orElse(Duration.ZERO);
-            System.out.println(info.toString()+" "+info.startInstant().get().toString()+" "+info.totalCpuDuration().get().toString()+" "+duration.toNanos());
+            ProcessBuilder pb = new ProcessBuilder("java", submissionPayload.getFilePath()+".java", basePath+submissionPayload.getContestId()+"/"+submissionPayload.getProblemId()+"/problem/input.txt", basePath+submissionPayload.getContestId()+"/"+submissionPayload.getProblemId()+"/"+submissionPayload.getUserId()+"/output.txt");
+            long startTime = System.currentTimeMillis();
+            Process p = pb.start();
+            boolean compileExitCode = p.waitFor(1, TimeUnit.SECONDS);
+            long endTime = System.currentTimeMillis();
+            long timeTaken = endTime - startTime;
 			if(p.isAlive()){
 				throw new Exception("Time Limit Exceeded");
 			}
@@ -39,16 +34,16 @@ public class JavaExecutionServiceHelperImpl implements ExecutionServiceHelper{
                 while ((bytesRead = errorStream.read(buf)) != -1) {
                     System.err.print(new String(buf, 0, bytesRead));
                 }
-                return false;
+                return -1;
             } else {
                 System.out.println("Run successful");
             }
-            return true;
+            return timeTaken    ;
 
         } catch (Exception e) {
             System.out.println(e.getMessage());
         }
-        return false;
+        return -1;
     }
     
 }

@@ -69,6 +69,7 @@ public class SubmissionController {
             Problem problem = problemRepository.findById(problemId).get();
             problem.setSolvedCount(problem.getSolvedCount() + 1);
             problemRepository.save(problem);
+            submission.setTimeTaken(apiResponse.getTimeTaken());
             submissionRepository.save(submission);
             apiResponse.setSubmissionId(submission.getId());
             return apiResponse;
