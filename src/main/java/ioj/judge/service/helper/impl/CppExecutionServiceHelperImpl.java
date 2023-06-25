@@ -13,7 +13,7 @@ public class CppExecutionServiceHelperImpl implements ExecutionServiceHelper{
         try {
             ProcessBuilder pb = new ProcessBuilder(submissionPayload.getFilePath(), basePath+submissionPayload.getContestId()+"/"+submissionPayload.getProblemId()+"/problem/input.txt", basePath+submissionPayload.getContestId()+"/"+submissionPayload.getProblemId()+"/"+submissionPayload.getUserId()+"/output.txt");
     
-            System.out.println(submissionPayload.getFilePath()+"\n"+basePath+submissionPayload.getContestId()+"/"+submissionPayload.getProblemId()+"/problem/input.txt"+"\n"+basePath+submissionPayload.getContestId()+"/"+submissionPayload.getProblemId()+"/"+submissionPayload.getUserId()+"/output.txt");
+            // System.out.println(submissionPayload.getFilePath()+"\n"+basePath+submissionPayload.getContestId()+"/"+submissionPayload.getProblemId()+"/problem/input.txt"+"\n"+basePath+submissionPayload.getContestId()+"/"+submissionPayload.getProblemId()+"/"+submissionPayload.getUserId()+"/output.txt");
     
             long currentTime = System.currentTimeMillis();
             Process p = pb.start();
@@ -36,11 +36,11 @@ public class CppExecutionServiceHelperImpl implements ExecutionServiceHelper{
                 }
                 return -1;
             } else {
-                System.out.println("Run successful");
+                // System.out.println("Run successful");
             }
             return timeTaken;
         } catch (Exception e) {
-            System.out.println(e.getMessage());
+            // System.out.println(e.getMessage());
             return -1;
         }
     }

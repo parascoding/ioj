@@ -46,7 +46,7 @@ public class Leaderboard {
         if(userIdToProblemSolvedMap.get(userId).add(problemId)){
             userIdToScoreMap.put(userId, userIdToScoreMap.getOrDefault(userId, 0) + 100);
         }
-        System.out.println(userIdToProblemSolvedMap);
-        System.out.println(userIdToScoreMap);
+        // System.out.println(userIdToProblemSolvedMap);
+        // System.out.println(userIdToScoreMap);
     }
 }

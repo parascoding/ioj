@@ -16,7 +16,7 @@ public class MatcherService {
                 if(x == null || y == null){
                     break;
                 }
-                System.out.println(x + " " + y);
+                // System.out.println(x + " " + y);
                 if(!x.equals(y)){
                     br1.close();
                     br2.close();
@@ -27,7 +27,7 @@ public class MatcherService {
             br2.close();
             return true;
         } catch (Exception e) {
-            System.out.println(e.getMessage());
+            // System.out.println(e.getMessage());
             return false;
         }
     }

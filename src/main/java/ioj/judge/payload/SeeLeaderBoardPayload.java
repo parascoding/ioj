@@ -23,7 +23,7 @@ public class SeeLeaderBoardPayload extends ApiResponse{
     private Map<String, Integer> leaderBoard;
     public void setLeaderBoard(Map<String, Integer> hm){
         leaderBoard = new HashMap<>();
-        System.out.println(hm);
+        // System.out.println(hm);
         List<Node> list = new ArrayList<>();
         for(Map.Entry<String, Integer> e : hm.entrySet()){
             list.add(new Node(e.getKey(), e.getValue()));

@@ -38,7 +38,7 @@ public class SeeContestController {
             allContestPayload.setMessage("List of Contests");
             return allContestPayload;
         } catch (Exception e) {
-            System.out.println(e.getMessage());
+            // System.out.println(e.getMessage());
             return new ApiResponse(false, e.getMessage());
         }
     }
@@ -46,7 +46,7 @@ public class SeeContestController {
     @GetMapping("/{contestId}/")
     private ApiResponse seeContest(@PathVariable String contestId) throws Exception{
         try {
-            System.out.println("WAS HERE");
+            // System.out.println("WAS HERE");
             Contest contest = contestRepository.findById(contestId).get();
             if(contest == null)
                 throw new Exception("No contest exists");
@@ -60,7 +60,7 @@ public class SeeContestController {
             seeContestPayload.setIsSuccess(true);
             return seeContestPayload;
         } catch (Exception e) {
-            System.out.println(e.getMessage());
+            // System.out.println(e.getMessage());
             return new ApiResponse(false, e.getMessage());
         }
     }

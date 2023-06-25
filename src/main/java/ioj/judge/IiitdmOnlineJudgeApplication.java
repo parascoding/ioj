@@ -19,28 +19,12 @@ import ioj.judge.payload.SubmissionResultPayload;
 
 @SpringBootApplication
 @CrossOrigin("*")
-public class IiitdmOnlineJudgeApplication implements CommandLineRunner{
+public class IiitdmOnlineJudgeApplication{
 
 	private SubmissionPayload submissionPayload;
 	private SubmissionController submissionController;
 	public static void main(String[] args) {
 		SpringApplication.run(IiitdmOnlineJudgeApplication.class, args);
-	}
-
-	@Override
-	public void run(String... args) throws Exception {
-		try {
-			BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-			while(true){
-				System.out.println("enter");
-				if(br.readLine().equals("a"))
-					doSub();
-				else
-					continue;
-			}
-		} catch (Exception e) {
-			System.out.println(e.getMessage());
-		}
 	}
 	// private void addProblem() throws Exception{
 	// 	String basePath = "/mnt/32b6b06a-25ad-4911-90a2-9c68b656b0e3/Personal/Spring/judge/temp/";
@@ -62,17 +46,17 @@ public class IiitdmOnlineJudgeApplication implements CommandLineRunner{
 			// submissionPayload = new SubmissionPayload("123", "123", "paras", "tthis is a code", "java", "", new File(basePath+"Main.java"), "");
 			// submissionController = new SubmissionController();
 			// SubmissionResultPayload submissionResultPayload = submissionController.submission(submissionPayload);
-			// System.out.println(submissionResultPayload);
-			// System.out.println("\n\n!!!!!!! SUCESS !!!!!!!!!!!!!\n\n");
+			// // System.out.println(submissionResultPayload);
+			// // System.out.println("\n\n!!!!!!! SUCESS !!!!!!!!!!!!!\n\n");
 			// String basePath = "/mnt/32b6b06a-25ad-4911-90a2-9c68b656b0e3/Personal/Spring/judge/temp/";
 			// submissionPayload = new SubmissionPayload("123", "123", "paras", "tthis is a code", "cpp", "", new File(basePath+"Main.cpp"), "");
 			// submissionController = new SubmissionController();
 			// ApiResponse apiResponse = submissionController.submission(submissionPayload);
-			// System.out.println(apiResponse);
-			// System.out.println("\n\n!!!!!!! SUCESS !!!!!!!!!!!!!\n\n");
+			// // System.out.println(apiResponse);
+			// // System.out.println("\n\n!!!!!!! SUCESS !!!!!!!!!!!!!\n\n");
 
 		} catch (Exception e) {
-			System.out.println(e.getMessage());
+			// System.out.println(e.getMessage());
 		}
 	}
 

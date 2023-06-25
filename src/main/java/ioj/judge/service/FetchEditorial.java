@@ -15,7 +15,7 @@ public class FetchEditorial extends FetchFileService{
 			}
 			return sb.toString();
         } catch (Exception e) {
-            System.out.println(e.getMessage());
+            // System.out.println(e.getMessage());
             return null;
         }
     }

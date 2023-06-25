@@ -11,10 +11,10 @@ public class AddProblemService {
                 file.mkdirs();
             file = new File(path, name);
             fileToSaved.transferTo(file);
-            System.out.println("SAVED: "+name); 
+            // System.out.println("SAVED: "+name); 
             return true;
         } catch (Exception e) {
-            System.out.println(e.getMessage());
+            // System.out.println(e.getMessage());
             return false;
         }
     }
@@ -22,7 +22,7 @@ public class AddProblemService {
         try {
             return saveFile(problemStatement, path, "statement.md");
         } catch (Exception e) {
-            System.out.println(e.getMessage());
+            // System.out.println(e.getMessage());
             return false;
         }
     }
@@ -30,7 +30,7 @@ public class AddProblemService {
         try {
             return saveFile(inputFile, path, "input.txt");
         } catch (Exception e) {
-            System.out.println(e.getMessage());
+            // System.out.println(e.getMessage());
             return false;
         }
     }
@@ -38,7 +38,7 @@ public class AddProblemService {
         try {
             return saveFile(outputFile, path, "output.txt");
         } catch (Exception e) {
-            System.out.println(e.getMessage());
+            // System.out.println(e.getMessage());
             return false;
         }
     }
@@ -46,7 +46,7 @@ public class AddProblemService {
         try {
             return saveFile(editorial, path, "editorial.md");
         } catch (Exception e) {
-            System.out.println(e.getMessage());
+            // System.out.println(e.getMessage());
             return false;
         }
     }

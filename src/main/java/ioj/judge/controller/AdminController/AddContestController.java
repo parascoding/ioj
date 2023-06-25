@@ -25,7 +25,7 @@ public class AddContestController {
     @PostMapping("/createContest")
     public ApiResponse createContest(@RequestBody AddContestPayload addContestPayload) throws Exception{
         try {
-            System.out.println(addContestPayload);
+            // // System.out.println(addContestPayload);
             Contest contest;
             if(contestRepository.existsById(addContestPayload.getContestId()))
                 contest = contestRepository.findById(addContestPayload.getContestId()).get();
@@ -35,10 +35,10 @@ public class AddContestController {
             contest.setStartTime(addContestPayload.getStartTime());
             contest.setEndTime(addContestPayload.getEndTime());
             contestRepository.save(contest);
-            System.out.println("Contest is added");
+            // // System.out.println("Contest is added");
             return new ApiResponse(true, "Contest Created Successfully");
         } catch (Exception e) {
-            System.out.println(e.getMessage());
+            // // System.out.println(e.getMessage());
             return new ApiResponse(false, e.getMessage());
         }
     }

@@ -14,18 +14,18 @@ public class CppCompileFileServiceHelperImpl implements CompileFileServiceHelper
                 submissionPayload.getFilePath(),
                 submissionPayload.getFilePath()+".cpp"
             );
-            System.out.println(submissionPayload.getFilePath());
+            // System.out.println(submissionPayload.getFilePath());
             Process p = pb.start();
             int s = p.waitFor();
             if (s != 0) {
-                System.out.println("Compile Error");
+                // System.out.println("Compile Error");
                 return false;
             } else {
-                System.out.println("Compilation successful");
+                // System.out.println("Compilation successful");
                 return true;    
             }
         } catch (Exception e) {
-            System.out.println(e.getMessage());
+            // System.out.println(e.getMessage());
             return false;   
         }
 

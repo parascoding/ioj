@@ -81,12 +81,12 @@ public class AuthController {
     @PostMapping("/login")
     public ApiResponse login(@RequestBody JwtRequest request) throws Exception{
         try {
-            System.out.println(request);
+            // System.out.println(request);
             this.doAuthenticate(request.getId(), request.getPassword());
     
             String role = userRepository.findById(request.getId()).get().getRole().toString();
             UserDetails userDetails = userDetailsService.loadUserByUsername(request.getId());
-            System.out.println(userDetails.getAuthorities());
+            // System.out.println(userDetails.getAuthorities());
             String token = this.helper.generateToken(userDetails, role);
     
             JwtResponse response = JwtResponse.builder()

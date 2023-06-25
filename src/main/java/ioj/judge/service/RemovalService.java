@@ -18,10 +18,10 @@ public class RemovalService {
             Process p = pb.start();
             int waitCode = p.waitFor();
             int exitCode = p.exitValue();
-            System.out.println("REMOVAL EXIT CODE: "+exitCode);
+            // System.out.println("REMOVAL EXIT CODE: "+exitCode);
             return exitCode == 0;
         } catch (Exception e) {
-            System.out.println(e.getMessage());
+            // System.out.println(e.getMessage());
             throw new Exception(e);
         }
     }

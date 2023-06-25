@@ -15,7 +15,7 @@ public class ExecutionService {
                 executionServiceHelper = new CppExecutionServiceHelperImpl();
             return executionServiceHelper.executeFile(submissionPayload);
         } catch (Exception e) {
-            System.out.println(e.getMessage());
+            // System.out.println(e.getMessage());
         }
         return -1;
     }

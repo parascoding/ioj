@@ -36,12 +36,12 @@ public class JavaExecutionServiceHelperImpl implements ExecutionServiceHelper{
                 }
                 return -1;
             } else {
-                System.out.println("Run successful");
+                // System.out.println("Run successful");
             }
             return timeTaken    ;
 
         } catch (Exception e) {
-            System.out.println(e.getMessage());
+            // System.out.println(e.getMessage());
         }
         return -1;
     }

@@ -14,10 +14,10 @@ public class FetchProblemStatement extends FetchFileService{
     public File fetchProblemStatement(String contestId, String problemId) throws Exception{
         try {
             String path = this.getBasePath()+contestId+"/"+problemId+"/problem/statement.md";
-            System.out.println("FOUND FILE");
+            // System.out.println("FOUND FILE");
             return new File(path);
         } catch (Exception e) {
-            System.out.println(e.getMessage());
+            // System.out.println(e.getMessage());
             return null;
         }
     }
@@ -33,7 +33,7 @@ public class FetchProblemStatement extends FetchFileService{
             String temp = br1.readLine();
             br1.close();
             temp = temp +"/data/";
-            System.out.println(temp);
+            // System.out.println(temp);
             String path = temp+contestId+"/"+problemId+"/problem/statement.md";
 			BufferedReader br = new BufferedReader(new FileReader(path));
 			StringBuilder sb = new StringBuilder();
@@ -43,7 +43,7 @@ public class FetchProblemStatement extends FetchFileService{
 			}
 			return sb.toString();
         } catch (Exception e) {
-            System.out.println(e.getMessage());
+            // System.out.println(e.getMessage());
             return null;
         }
     }

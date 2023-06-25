@@ -20,7 +20,7 @@ public class SubmissionService {
     }
     public SubmissionResultPayload submission(SubmissionPayload submissionPayload) throws Exception{
         try {
-            System.out.println("GOING TO SAVE");
+            // System.out.println("GOING TO SAVE");
             if(!saveToFileService.saveToFile(submissionPayload)){
                 removalService.removeTempFiles(submissionPayload);
                 return new SubmissionResultPayload(
@@ -28,7 +28,7 @@ public class SubmissionService {
                     "Saving Error"
                 );
             }
-            System.out.println("SAVED");
+            // System.out.println("SAVED");
             if(!compileFileService.compileFile(submissionPayload)){
                 removalService.removeTempFiles(submissionPayload);
                 return new SubmissionResultPayload(
@@ -36,9 +36,9 @@ public class SubmissionService {
                     "Compilation Error"
                 );
             }
-            System.out.println("Compiled");
+            // System.out.println("Compiled");
             long timeTaken = executionService.executeFile(submissionPayload);
-            System.out.println("Runned");
+            // System.out.println("Runned");
             if(timeTaken == -1){
                 removalService.removeTempFiles(submissionPayload);
                 return new SubmissionResultPayload(

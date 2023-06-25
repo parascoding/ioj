@@ -15,7 +15,7 @@ public class CompileFileService {
                 compileFileServiceHelper = new CppCompileFileServiceHelperImpl();
             return compileFileServiceHelper.compileFile(submissionPayload);
         } catch (Exception e) {
-            System.out.println(e.getMessage());
+            // System.out.println(e.getMessage());
         }
         return false;
     }
