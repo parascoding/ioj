@@ -6,18 +6,25 @@ import java.io.FileReader;
 import java.io.InputStreamReader;
 import java.io.PrintWriter;
 
+import org.springframework.beans.factory.annotation.Autowired;
+
 import ioj.judge.payload.SubmissionPayload;
 
 public class SaveToFileService {
-    private String basePath = "/mnt/32b6b06a-25ad-4911-90a2-9c68b656b0e3/Personal/Spring/judge/data/";
+    private String basePath;
+    
     public boolean saveToFile(SubmissionPayload submissionPayload) throws Exception{
         try {
+            if(basePath == null || basePath.length() == 0)
+                basePath = new GetbasePathService().getBasePath();
+            System.out.println("BASE PATH: "+basePath);
             File file = new File(basePath+
                                 submissionPayload.getContestId() + "/" +
                                 submissionPayload.getProblemId() + "/" +
                                 submissionPayload.getUserId() + "/");
             if(!file.exists())
                 file.mkdirs();
+            System.out.println(21);
             file = new File(basePath+
                             submissionPayload.getContestId() + "/" +
                             submissionPayload.getProblemId() + "/" +
@@ -25,6 +32,7 @@ public class SaveToFileService {
                             "Main" + 
                             "."+
                             submissionPayload.getLanguage());
+            System.out.println(29);
             submissionPayload.setFilePath(basePath+
                                         submissionPayload.getContestId() + "/" +
                                         submissionPayload.getProblemId() + "/" +
@@ -33,6 +41,8 @@ public class SaveToFileService {
             submissionPayload.setBasePath(basePath +
                                         submissionPayload.getContestId() + "/" +
                                         submissionPayload.getProblemId() + "/");
+            file.createNewFile();
+            System.out.println(38);
             PrintWriter ot = new PrintWriter(file);
             BufferedReader br = new BufferedReader(new InputStreamReader(submissionPayload.getSourceCode().getInputStream()));
             String s;// = new String(submissionPayload.getSourceCode());
@@ -42,6 +52,7 @@ public class SaveToFileService {
             br.close();
             return true;
         } catch (Exception e) {
+            System.out.println(e.getMessage());
             throw new Exception(e.getMessage());
         }
         

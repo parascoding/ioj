@@ -18,6 +18,8 @@ import ioj.judge.entities.Problem;
 import ioj.judge.payload.ApiResponse;
 import ioj.judge.payload.AdminPayload.AddProblemFilesPayload;
 import ioj.judge.service.AddProblemService;
+import ioj.judge.service.GetbasePathService;
+
 import org.springframework.web.bind.annotation.ModelAttribute;
 
 @RestController
@@ -26,8 +28,8 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 public class AddProblemController {
 
     private AddProblemService addProblemService;
-    private String basePath = "../../../../../data/";
-    
+    // private String basePath = "../../../../../data/";
+    private String basePath = new GetbasePathService().getBasePath();
     @Autowired
     private ContestRepository contestRepository;
 
